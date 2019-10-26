@@ -1,58 +1,13 @@
-import { Container } from "../components/container"
-import { useStaticQuery, graphql } from "gatsby"
-import Img from "gatsby-image"
 import React, { useEffect, useRef } from "react"
+import { useStaticQuery, graphql } from "gatsby"
+
+// utils
 import styled from "@emotion/styled"
+import { mq, mqFill } from "../utils"
 
-const Image = () => {
-  const data = useStaticQuery(graphql`
-    query {
-      placeholderImage: file(relativePath: { eq: "nail-polish.png" }) {
-        childImageSharp {
-          fluid(maxWidth: 1200) {
-            ...GatsbyImageSharpFluid
-          }
-        }
-      }
-    }
-  `)
-
-  return <Img fluid={data.placeholderImage.childImageSharp.fluid} />
-}
-
-const H2 = styled.h2`
-  font-size: 2rem;
-  text-align: center;
-  margin: 3rem 0;
-  z-index: 1;
-  position: relative;
-`
-
-const StyledContainer = styled(Container)`
-  padding: 0 4rem 3rem;
-  position: relative;
-  margin-top: -59px;
-  padding-top: 59px;
-`
-
-const P = styled.p`
-  font-size: 1.5rem;
-  margin-bottom: 2.5rem;
-  z-index: 1;
-  position: relative;
-`
-
-const BackgroundShape = styled.div`
-  height: 300px;
-  width: 300px;
-  background-color: pink;
-  position: absolute;
-  top: 25%;
-  z-index: 0;
-  transform: rotate(5deg) translateX(-50%);
-  opacity: 0.5;
-  left: 50%;
-`
+// components
+import { Container, H2, Text } from "../components/atoms"
+import Img from "gatsby-image"
 
 export const AboutUs = () => {
   const aboutUsRef = useRef(null)
@@ -83,24 +38,86 @@ export const AboutUs = () => {
   }, [observer])
 
   return (
-    <StyledContainer id="about-us" ref={aboutUsRef}>
-      <H2>About Us</H2>
-      <P>
-        Pamper yourself with a luxurious experience at the hands of our skilled
-        and trained professionals. From head to toe, we have you covered.
-      </P>
-      <P>
-        At Posh Nail Bar, we care about you, our wonderful customers, and here
-        to service to your heart’s delights! Enjoy complimentary drinks on us
-        while you wait.
-      </P>
-      <P>
-        So sit back, relax, sink into our relaxing chairs, and let the magic
-        happen as your fingers and toes transform into a beauty you wouldn’t
-        believe.
-      </P>
+    <StyledContainer fixed id="about-us" ref={aboutUsRef}>
+      <StyledH2>About Us</StyledH2>
+      <Content>
+        <StyledText>
+          Pamper yourself with a luxurious experience at the hands of our
+          skilled and trained professionals. From head to toe, we have you
+          covered.
+        </StyledText>
+        <StyledText>
+          At Posh Nail Bar, we care about you, our wonderful customers, and here
+          to service to your heart’s delights! Enjoy complimentary drinks on us
+          while you wait.
+        </StyledText>
+        <StyledText>
+          So sit back, relax, sink into our relaxing chairs, and let the magic
+          happen as your fingers and toes transform into a beauty you wouldn’t
+          believe.
+        </StyledText>
+      </Content>
       <BackgroundShape />
       <Image />
     </StyledContainer>
   )
+}
+
+const StyledH2 = styled(H2)`
+  z-index: 1;
+  position: relative;
+`
+
+const StyledContainer = styled(Container)(props =>
+  mq({
+    position: "relative",
+    marginTop: ["-60px", ...mqFill(2), "-80px"],
+    paddingTop: ["60px", ...mqFill(2), "80px"],
+  })
+)
+
+const Content = styled.div(props =>
+  mq({
+    marginTop: [...mqFill(2), "10%"],
+    marginLeft: [...mqFill(2), "20%"],
+    width: ["100%", "100%", "50%"],
+  })
+)
+
+const StyledText = styled(Text)`
+  margin-bottom: 2.5rem;
+  z-index: 1;
+  position: relative;
+`
+
+const BackgroundShape = styled.div(props =>
+  mq({
+    height: ["320px", "280px", "320px"],
+    width: ["300px", "300px", "320px"],
+    backgroundColor: props.theme.colors.red50,
+    position: "absolute",
+    zIndex: 0,
+    opacity: 0.3,
+    transform: ["rotate(5deg) translateX(-50%)", null, "rotate(5deg)"],
+    top: ["20%", "25%", "20%"],
+    left: [null, "50%", "40%"],
+  })
+)
+
+const Image = () => {
+  const data = useStaticQuery(
+    graphql`
+      query {
+        placeholderImage: file(relativePath: { eq: "nail-polish.png" }) {
+          childImageSharp {
+            fluid(maxWidth: 1200) {
+              ...GatsbyImageSharpFluid
+            }
+          }
+        }
+      }
+    `
+  )
+
+  return <Img fluid={data.placeholderImage.childImageSharp.fluid} />
 }

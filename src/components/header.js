@@ -1,9 +1,56 @@
 import React from "react"
 import { useStaticQuery, graphql, Link } from "gatsby"
-import Img from "gatsby-image"
-import styled from "@emotion/styled"
 
-import { Container } from "./container"
+// utils
+import styled from "@emotion/styled"
+import { mq, mqFill } from "../utils"
+
+// components
+import { Container, H1 } from "./atoms"
+import Img from "gatsby-image"
+
+export const Header = ({ siteTitle, onToggleNav }) => (
+  <StyledHeader id="header">
+    <StyledContainer fixed>
+      <StyledH1>
+        <Link to="/">{siteTitle}</Link>
+      </StyledH1>
+      <NavIconContainer onClick={onToggleNav}>
+        <NavigationIcon />
+      </NavIconContainer>
+    </StyledContainer>
+  </StyledHeader>
+)
+
+const headerHeights = ["60px", "60px", null, "80px", ...mqFill(2)]
+export const headerHeightsOffset = headerHeights.map(ht => (ht ? `-${ht}` : ht))
+
+const StyledHeader = styled.header(
+  mq({
+    position: "sticky",
+    top: 0,
+    zIndex: 10,
+    transition: "all 0.5s ease",
+    textTransform: "uppercase",
+    height: headerHeights,
+  })
+)
+
+const StyledContainer = styled(Container)`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+`
+
+const StyledH1 = styled(H1)`
+  margin-top: 4px;
+`
+
+const NavIconContainer = styled.div`
+  height: 3rem;
+  width: 3rem;
+  cursor: pointer;
+`
 
 const NavigationIcon = () => {
   const data = useStaticQuery(graphql`
@@ -20,45 +67,3 @@ const NavigationIcon = () => {
 
   return <Img fluid={data.placeholderImage.childImageSharp.fluid} />
 }
-
-const StyledHeader = styled.header`
-  position: sticky;
-  top: 0;
-  z-index: 10;
-  transition: all 0.5s ease;
-  text-transform: uppercase;
-  height: 60px;
-`
-
-const StyledContainer = styled(Container)`
-  padding: 1rem 1.5rem;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-`
-
-const StyledH1 = styled.h1`
-  font-size: 2.5rem;
-  margin: 0;
-`
-
-const NavIconContainer = styled.div`
-  height: 3rem;
-  width: 3rem;
-  cursor: pointer;
-`
-
-const Header = ({ siteTitle, onToggleNav }) => (
-  <StyledHeader id="header">
-    <StyledContainer>
-      <StyledH1>
-        <Link to="/">{siteTitle}</Link>
-      </StyledH1>
-      <NavIconContainer onClick={onToggleNav}>
-        <NavigationIcon />
-      </NavIconContainer>
-    </StyledContainer>
-  </StyledHeader>
-)
-
-export default Header

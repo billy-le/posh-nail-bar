@@ -9,10 +9,6 @@ import React from "react"
 import PropTypes from "prop-types"
 import Helmet from "react-helmet"
 import { useStaticQuery, graphql } from "gatsby"
-import { TypographyStyle, GoogleFont } from "react-typography"
-// Best practice is to have a typography module
-// where you define your theme.
-import typography from "../utils/typography"
 
 function SEO({ description, lang, meta, title }) {
   const { site } = useStaticQuery(

@@ -2,6 +2,8 @@ import Typography from "typography"
 
 const typography = new Typography({
   bodyFontFamily: ["Cormorant"],
+  baseFontSize: "10px",
+  scaleRatio: "0",
   googleFonts: [
     {
       name: "Antic Diodone",
@@ -12,7 +14,7 @@ const typography = new Typography({
       styles: ["400", "600"],
     },
   ],
-  includeNormalize: false,
+  includeNormalize: true,
   headerFontFamily: ["Antic Diodone"],
   headerWeight: "400",
 })

@@ -1,11 +1,24 @@
 import React from "react"
 
+// utils
 import styled from "@emotion/styled"
 
-import { Container } from "./container"
-import { Button } from "./button"
+// components
+import { Button, Container } from "./atoms"
 import mainImage from "../images/main-image.jpg"
 import interior from "../images/interior.jpg"
+
+export const Hero = props => (
+  <>
+    <StyledContainer>
+      <MainImage />
+      <StyledButton primary>Book Now</StyledButton>
+    </StyledContainer>
+    <Container>
+      <SecondaryImage />
+    </Container>
+  </>
+)
 
 const MainImage = styled.div`
     height: 75vh;
@@ -29,20 +42,6 @@ const StyledButton = styled(Button)`
   position: absolute;
   bottom: -1.75rem;
   z-index: 1;
-  background-color: lightblue;
-  font-size: 2rem;
   left: 50%;
   transform: translateX(-50%);
 `
-
-export const Hero = props => (
-  <>
-    <StyledContainer>
-      <MainImage />
-      <StyledButton>Book Now</StyledButton>
-    </StyledContainer>
-    <Container>
-      <SecondaryImage />
-    </Container>
-  </>
-)

@@ -1,9 +1,32 @@
 import React from "react"
-import styled from "@emotion/styled"
 import { useStaticQuery, graphql } from "gatsby"
-import Img from "gatsby-image"
 
-import { Container } from "../components/container"
+// utils
+import styled from "@emotion/styled"
+
+// components
+import Img from "gatsby-image"
+import { Container } from "./atoms/container"
+
+export const Navigation = ({ isOpen, onCloseClick }) => (
+  <Overlay
+    style={{
+      right: isOpen ? "0" : "-75vw",
+      width: isOpen ? "75vw" : "0",
+    }}
+  >
+    <CloseIconContainer onClick={onCloseClick}>
+      <CloseIcon />
+    </CloseIconContainer>
+    <NavList>
+      {sections.map((s, i) => (
+        <NavItem key={i} onClick={onCloseClick}>
+          <a href={`#${s.replace(" ", "-").toLowerCase()}`}>{s}</a>
+        </NavItem>
+      ))}
+    </NavList>
+  </Overlay>
+)
 
 const sections = [
   "Home",
@@ -22,6 +45,7 @@ const Overlay = styled.div`
   transition: all 0.5s ease-in-out;
   z-index: 50;
   top: 0;
+  box-shadow: -4px 0 8px rgba(0, 0, 0, 0.1);
 `
 
 const NavList = styled.ul`
@@ -53,7 +77,7 @@ const CloseIcon = () => {
     query {
       placeholderImage: file(relativePath: { eq: "close.png" }) {
         childImageSharp {
-          fluid(maxWidth: 300) {
+          fluid(maxWidth: 50) {
             ...GatsbyImageSharpFluid
           }
         }
@@ -63,23 +87,3 @@ const CloseIcon = () => {
 
   return <Img fluid={data.placeholderImage.childImageSharp.fluid} />
 }
-
-export const Navigation = ({ isOpen, onCloseClick }) => (
-  <Overlay
-    style={{
-      right: isOpen ? "0" : "-75vw",
-      width: isOpen ? "75vw" : "0",
-    }}
-  >
-    <CloseIconContainer onClick={onCloseClick}>
-      <CloseIcon />
-    </CloseIconContainer>
-    <NavList>
-      {sections.map((s, i) => (
-        <NavItem key={i} onClick={onCloseClick}>
-          <a href={`#${s.replace(" ", "-").toLowerCase()}`}>{s}</a>
-        </NavItem>
-      ))}
-    </NavList>
-  </Overlay>
-)

@@ -2,14 +2,12 @@ import React from "react"
 
 import Layout from "../components/layout"
 import SEO from "../components/seo"
-import { Hero } from "../components/hero"
-import { AboutUs } from "../sections/about-us"
-import { Services } from "../sections/services"
+import { Hero } from "../components"
+import { AboutUs, Services } from "../sections"
 
-import "normalize.css"
 import "./index.css"
 
-const IndexPage = () => {
+const IndexPage = props => {
   return (
     <Layout>
       <SEO title="Home" />

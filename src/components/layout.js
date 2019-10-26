@@ -1,16 +1,13 @@
 import React, { useState } from "react"
-import PropTypes from "prop-types"
 import { useStaticQuery, graphql } from "gatsby"
+
+// utils
 import styled from "@emotion/styled"
+import { ThemeProvider } from "emotion-theming"
+import { theme, mq } from "../utils"
 
-import Header from "./header"
-import { Navigation } from "./navigation"
-
-const StyledDiv = styled.div`
-  margin-top: -60px;
-`
-
-const StyledMain = styled.main``
+// components
+import { Header, headerHeightsOffset, Navigation } from "./"
 
 const Layout = ({ children }) => {
   const [isOpen, setIsOpen] = useState(false)
@@ -30,7 +27,7 @@ const Layout = ({ children }) => {
   }
 
   return (
-    <>
+    <ThemeProvider theme={theme}>
       <Header
         siteTitle={data.site.siteMetadata.title}
         onToggleNav={onToggleNav}
@@ -39,12 +36,16 @@ const Layout = ({ children }) => {
       <StyledDiv>
         <StyledMain>{children}</StyledMain>
       </StyledDiv>
-    </>
+    </ThemeProvider>
   )
 }
 
-Layout.propTypes = {
-  children: PropTypes.node.isRequired,
-}
-
 export default Layout
+
+const StyledDiv = styled.div(
+  mq({
+    marginTop: headerHeightsOffset,
+  })
+)
+
+const StyledMain = styled.main``
