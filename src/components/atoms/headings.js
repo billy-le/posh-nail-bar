@@ -13,8 +13,8 @@ export const H1 = styled.h1(props =>
 export const H2 = styled.h2(props =>
   mq({
     color: props.theme.colors.gray20,
-    fontSize: ["3rem", "3rem", "3rem", "4rem"],
-    margin: "3rem 0",
+    fontSize: ["4rem", "4rem", "4rem", "4rem"],
+    margin: "5rem 0",
     textAlign: "center",
   })
 )

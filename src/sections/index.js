@@ -1,2 +1,6 @@
 export * from "./about-us"
 export * from "./services"
+export * from "./professionals"
+export * from "./testimonials"
+export * from "./pricing"
+export * from "./contact-us"

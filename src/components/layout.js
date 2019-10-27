@@ -7,7 +7,7 @@ import { ThemeProvider } from "emotion-theming"
 import { theme, mq } from "../utils"
 
 // components
-import { Header, headerHeightsOffset, Navigation } from "./"
+import { Header, headerHeightsOffset, Navigation, Footer } from "./"
 
 const Layout = ({ children }) => {
   const [isOpen, setIsOpen] = useState(false)
@@ -35,6 +35,7 @@ const Layout = ({ children }) => {
       <Navigation isOpen={isOpen} onCloseClick={onToggleNav} />
       <StyledDiv>
         <StyledMain>{children}</StyledMain>
+        <Footer />
       </StyledDiv>
     </ThemeProvider>
   )

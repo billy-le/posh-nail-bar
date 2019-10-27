@@ -78,8 +78,8 @@ const StyledContainer = styled(Container)(props =>
 
 const Content = styled.div(props =>
   mq({
+    margin: "0 auto",
     marginTop: [...mqFill(2), "10%"],
-    marginLeft: [...mqFill(2), "20%"],
     width: ["100%", "100%", "50%"],
   })
 )
@@ -92,15 +92,15 @@ const StyledText = styled(Text)`
 
 const BackgroundShape = styled.div(props =>
   mq({
-    height: ["320px", "280px", "320px"],
-    width: ["300px", "300px", "320px"],
+    height: ["320px", "280px", "400px"],
+    width: ["300px", "300px", "500px"],
     backgroundColor: props.theme.colors.red50,
     position: "absolute",
     zIndex: 0,
     opacity: 0.3,
-    transform: ["rotate(5deg) translateX(-50%)", null, "rotate(5deg)"],
-    top: ["20%", "25%", "20%"],
-    left: [null, "50%", "40%"],
+    transform: ["rotate(5deg) translateX(-50%)"],
+    top: ["20%", "28%", "25%"],
+    left: "50%",
   })
 )
 

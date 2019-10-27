@@ -14,6 +14,6 @@ const StyledDiv = styled.div(
   height: 100%;
   margin: 0 auto;
   max-width: 1200px;
-  padding: ${props.fixed ? "1rem 3rem" : props.fluid ? "1rem" : "0"};
+  padding: ${props.fixed ? "0 3rem" : props.fluid ? "0 1rem" : "0"};
 `
 )

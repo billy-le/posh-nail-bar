@@ -3,7 +3,7 @@ import { useStaticQuery, graphql } from "gatsby"
 
 // utirls
 import styled from "@emotion/styled"
-import { jsx } from "@emotion/core"
+import { mq, mqFill } from "../utils"
 
 // components
 import { Container, H2, H3, Text } from "../components/atoms"
@@ -15,7 +15,7 @@ export const Services = () => {
   useEffect(() => {
     if (imageRef.current) {
       const target = imageRef.current.imageRef.current.getBoundingClientRect()
-      const backgrounds = document.querySelectorAll("ul")
+      const backgrounds = document.querySelectorAll(".service-items")
       for (const bg of backgrounds) {
         bg.style.height = `${target.height}px`
         bg.style.width = `${target.width}px`
@@ -24,12 +24,13 @@ export const Services = () => {
   }, [imageRef])
 
   return (
-    <Container fixed id="services">
+    <StyledContainer fixed id="services">
       <H2>Services</H2>
+
       <FlexContainer>
         <Content>
           <H3>Hands</H3>
-          <Ul blue>
+          <Ul blue className="service-items">
             <Li>
               <Text>Manicure</Text>
             </Li>
@@ -54,7 +55,11 @@ export const Services = () => {
         </Wrapper>
         <Content>
           <H3 css={{ textAlign: "right" }}>Feet</H3>
-          <Ul pink style={{ marginLeft: "-2rem", textAlign: "right" }}>
+          <Ul
+            pink
+            className="service-items"
+            style={{ marginLeft: "-2rem", textAlign: "right" }}
+          >
             <Li>
               <Text>Pedicures</Text>
             </Li>
@@ -70,10 +75,10 @@ export const Services = () => {
         </Content>
       </FlexContainer>
 
-      <FlexContainer>
+      <FlexContainer style={{ marginBottom: 0 }}>
         <Content>
           <H3>Health & Beauty</H3>
-          <Ul green>
+          <Ul green className="service-items">
             <Li>
               <Text>Waxing</Text>
             </Li>
@@ -89,9 +94,17 @@ export const Services = () => {
           <ImgSet threading ref={imageRef} />
         </Wrapper>
       </FlexContainer>
-    </Container>
+    </StyledContainer>
   )
 }
+
+const StyledContainer = styled(Container)(props =>
+  mq({
+    position: "relative",
+    marginTop: ["-60px", ...mqFill(2), "-80px"],
+    paddingTop: ["60px", ...mqFill(2), "80px"],
+  })
+)
 
 const FlexContainer = styled.div`
   display: flex;

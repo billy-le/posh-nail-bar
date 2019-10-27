@@ -3,6 +3,7 @@ import { useStaticQuery, graphql, Link } from "gatsby"
 
 // utils
 import styled from "@emotion/styled"
+import { css } from "@emotion/core"
 import { mq, mqFill } from "../utils"
 
 // components
@@ -15,7 +16,7 @@ export const Header = ({ siteTitle, onToggleNav }) => (
       <StyledH1>
         <Link to="/">{siteTitle}</Link>
       </StyledH1>
-      <NavIconContainer onClick={onToggleNav}>
+      <NavIconContainer tabIndex={1} onClick={onToggleNav}>
         <NavigationIcon />
       </NavIconContainer>
     </StyledContainer>
@@ -46,11 +47,16 @@ const StyledH1 = styled(H1)`
   margin-top: 4px;
 `
 
-const NavIconContainer = styled.div`
-  height: 3rem;
-  width: 3rem;
-  cursor: pointer;
-`
+const NavIconContainer = styled.div(props =>
+  css({
+    height: "3rem",
+    width: "3rem",
+    cursor: "pointer",
+    "&:focus": {
+      outline: `1px solid ${props.theme.colors.blue10}`,
+    },
+  })
+)
 
 const NavigationIcon = () => {
   const data = useStaticQuery(graphql`

@@ -23,17 +23,19 @@ const StyledButton = styled.button(props => {
     case success:
       backgroundColor = colors.green20
     default:
+      backgroundColor = colors.gray30
       break
   }
 
   return mq({
-    boxShadow: `0 2px 8px ${colors.gray10}`,
-    fontSize: ["2rem", "3rem", "4rem", "5rem", ...mqFill(2)],
     backgroundColor,
     border: "none",
     borderRadius: "4px",
-    padding: ["1rem 1.5rem", ...mqFill(3), "1rem 4rem"],
+    boxShadow: `0 4px 8px rgba(0,0,0,0.3)`,
+    color: colors.gray10,
     display: "block",
+    fontSize: ["2rem", "2rem", "3rem", "3rem", ...mqFill(2)],
+    padding: ["1rem 1.5rem", ...mqFill(3), ".5rem 2rem"],
   })
 })
 
