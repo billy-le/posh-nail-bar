@@ -5,7 +5,7 @@ import styled from "@emotion/styled"
 
 // components
 import { Container, Text } from "../components/atoms"
-import { mq, mqFill } from "../utils"
+import { mq } from "../utils"
 
 export const Footer = props => {
   return (

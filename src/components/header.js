@@ -1,39 +1,63 @@
-import React from "react"
+import React, { useEffect, useRef } from "react"
 import { useStaticQuery, graphql, Link } from "gatsby"
 
 // utils
 import styled from "@emotion/styled"
 import { css } from "@emotion/core"
 import { mq, mqFill } from "../utils"
+import throttle from "lodash/throttle"
 
 // components
 import { Container, H1 } from "./atoms"
 import Img from "gatsby-image"
 
-export const Header = ({ siteTitle, onToggleNav }) => (
-  <StyledHeader id="header">
-    <StyledContainer fixed>
-      <StyledH1>
-        <Link to="/">{siteTitle}</Link>
-      </StyledH1>
-      <NavIconContainer tabIndex={1} onClick={onToggleNav}>
-        <NavigationIcon />
-      </NavIconContainer>
-    </StyledContainer>
-  </StyledHeader>
-)
+export const Header = ({ siteTitle, onToggleNav }) => {
+  const headerRef = useRef()
+
+  function onScroll() {
+    const headerOffsetTop = headerRef.current.offsetTop
+    const { pageYOffset } = window
+    if (pageYOffset > headerOffsetTop) {
+      headerRef.current.style.background = "white"
+      headerRef.current.style.boxShadow = "0 0 8px"
+    } else if (pageYOffset === headerOffsetTop) {
+      headerRef.current.style.background = "transparent"
+      headerRef.current.style.boxShadow = "none"
+    }
+  }
+
+  useEffect(() => {
+    if (headerRef.current) {
+      window.onscroll = throttle(() => onScroll(), 500)
+    }
+  }, [])
+
+  return (
+    <StyledHeader ref={headerRef} id="header">
+      <StyledContainer fixed>
+        <StyledH1>
+          <Link to="/">{siteTitle}</Link>
+        </StyledH1>
+        <NavIconContainer tabIndex={1} onClick={onToggleNav}>
+          <NavigationIcon />
+        </NavIconContainer>
+      </StyledContainer>
+    </StyledHeader>
+  )
+}
 
 const headerHeights = ["60px", "60px", null, "80px", ...mqFill(2)]
 export const headerHeightsOffset = headerHeights.map(ht => (ht ? `-${ht}` : ht))
 
 const StyledHeader = styled.header(
   mq({
-    position: "sticky",
-    top: 0,
-    zIndex: 10,
-    transition: "all 0.5s ease",
-    textTransform: "uppercase",
     height: headerHeights,
+    position: "fixed",
+    textTransform: "uppercase",
+    top: 0,
+    transition: "all 0.5s ease",
+    width: "100%",
+    zIndex: 10,
   })
 )
 

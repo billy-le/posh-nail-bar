@@ -22,6 +22,7 @@ const StyledButton = styled.button(props => {
       break
     case success:
       backgroundColor = colors.green20
+      break
     default:
       backgroundColor = colors.gray30
       break

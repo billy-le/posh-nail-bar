@@ -1,5 +1,3 @@
-import React from "react"
-
 // utils
 import styled from "@emotion/styled"
 import { mq, mqFill } from "../../utils"

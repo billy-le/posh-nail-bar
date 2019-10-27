@@ -33,20 +33,13 @@ const Layout = ({ children }) => {
         onToggleNav={onToggleNav}
       />
       <Navigation isOpen={isOpen} onCloseClick={onToggleNav} />
-      <StyledDiv>
-        <StyledMain>{children}</StyledMain>
-        <Footer />
-      </StyledDiv>
+
+      <StyledMain>{children}</StyledMain>
+      <Footer />
     </ThemeProvider>
   )
 }
 
 export default Layout
-
-const StyledDiv = styled.div(
-  mq({
-    marginTop: headerHeightsOffset,
-  })
-)
 
 const StyledMain = styled.main``

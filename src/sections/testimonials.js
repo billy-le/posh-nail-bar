@@ -43,6 +43,7 @@ export const Testimonials = props => {
       <H2>Testimonials</H2>
       {testimonials.map((t, i) => (
         <div
+          key={i}
           style={{
             marginBottom: i === testimonials.length - 1 ? "0" : "2rem",
           }}
@@ -87,7 +88,4 @@ const Star = styled.img`
 
 const Content = styled.div`
   padding: 3rem;
-`
-const StyledText = styled(Text)`
-  font-size: 1rem;
 `

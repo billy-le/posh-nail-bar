@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react"
+import React from "react"
 import { useStaticQuery, graphql } from "gatsby"
 
 // utils
@@ -10,35 +10,8 @@ import { Container, H2, Text } from "../components/atoms"
 import Img from "gatsby-image"
 
 export const AboutUs = () => {
-  const aboutUsRef = useRef(null)
-
-  const options = {
-    root: null,
-    rootMargin: "0px",
-    threshold: 0.2,
-  }
-  const observer = new IntersectionObserver(onScrollChange, options)
-
-  function onScrollChange([entry]) {
-    const header = document.querySelector("#header")
-
-    if (entry.intersectionRatio > 0.2) {
-      header.style.backgroundColor = "white"
-      header.style.boxShadow = "0 0 4px"
-    } else {
-      header.style.backgroundColor = "transparent"
-      header.style.boxShadow = "none"
-    }
-  }
-
-  useEffect(() => {
-    if (aboutUsRef.current) {
-      observer.observe(aboutUsRef.current)
-    }
-  }, [observer])
-
   return (
-    <StyledContainer fixed id="about-us" ref={aboutUsRef}>
+    <StyledContainer fixed id="about-us">
       <StyledH2>About Us</StyledH2>
       <Content>
         <StyledText>

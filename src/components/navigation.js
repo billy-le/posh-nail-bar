@@ -32,7 +32,6 @@ const sections = [
   "Home",
   "About Us",
   "Services",
-  "Professionals",
   "Testimonials",
   "Pricing",
   "Contact Us",
@@ -68,8 +67,8 @@ const CloseIconContainer = styled(Container)`
   width: 3rem;
   cursor: pointer;
   position: absolute;
-  top: 1rem;
-  right: 1.5rem;
+  top: 2rem;
+  right: 3rem;
 `
 
 const CloseIcon = () => {
