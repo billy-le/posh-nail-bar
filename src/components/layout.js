@@ -4,10 +4,10 @@ import { useStaticQuery, graphql } from "gatsby"
 // utils
 import styled from "@emotion/styled"
 import { ThemeProvider } from "emotion-theming"
-import { theme, mq } from "../utils"
+import { theme } from "../utils"
 
 // components
-import { Header, headerHeightsOffset, Navigation, Footer } from "./"
+import { Header, Navigation, Footer } from "./"
 
 const Layout = ({ children }) => {
   const [isOpen, setIsOpen] = useState(false)

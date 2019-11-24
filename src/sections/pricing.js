@@ -68,9 +68,9 @@ export const Pricing = props => {
     })
   }
 
-  function renderPriceItem(item) {
+  function renderPriceItem(item, i) {
     return (
-      <PriceItem>
+      <PriceItem key={i}>
         <span>
           {item.type} {item.subcategory} {item.service}
         </span>
@@ -86,30 +86,30 @@ export const Pricing = props => {
       <Grid>
         {CATEGORIES.map((cat, i) => {
           const priceItems = data
-            .map((datum, i) => {
+            .map((datum, k) => {
               if (datum.category === cat) {
                 if (isActiveFilters.all) {
-                  return renderPriceItem(datum)
+                  return renderPriceItem(datum, k)
                 } else {
                   switch (true) {
                     case isActiveFilters.artificial &&
                       datum.category.includes("Artificial"):
-                      return renderPriceItem(datum)
+                      return renderPriceItem(datum, k)
                     case isActiveFilters.beauty &&
                       datum.category.includes("Beauty"):
-                      return renderPriceItem(datum)
+                      return renderPriceItem(datum, k)
                     case isActiveFilters.children &&
                       datum.category.includes("Children"):
-                      return renderPriceItem(datum)
+                      return renderPriceItem(datum, k)
                     case isActiveFilters.feet &&
                       datum.subcategory.includes("Feet"):
-                      return renderPriceItem(datum)
+                      return renderPriceItem(datum, k)
                     case isActiveFilters.hands &&
                       datum.subcategory.includes("Hands"):
-                      return renderPriceItem(datum)
+                      return renderPriceItem(datum, k)
                     case isActiveFilters.alacarte &&
                       datum.subcategory.includes("A la Carte"):
-                      return renderPriceItem(datum)
+                      return renderPriceItem(datum, k)
                     default:
                       return null
                   }

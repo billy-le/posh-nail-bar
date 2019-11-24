@@ -3,13 +3,20 @@ import { useStaticQuery, graphql, Link } from "gatsby"
 
 // utils
 import styled from "@emotion/styled"
-import { css } from "@emotion/core"
 import { mq, mqFill } from "../utils"
 import throttle from "lodash/throttle"
 
 // components
 import { Container, H1 } from "./atoms"
 import Img from "gatsby-image"
+
+const sections = [
+  "About Us",
+  "Services",
+  "Testimonials",
+  "Pricing",
+  "Contact Us",
+]
 
 export const Header = ({ siteTitle, onToggleNav }) => {
   const headerRef = useRef()
@@ -38,6 +45,17 @@ export const Header = ({ siteTitle, onToggleNav }) => {
         <StyledH1>
           <Link to="/">{siteTitle}</Link>
         </StyledH1>
+        <StyledNav>
+          <StyledUL>
+            {sections.map((section, i) => (
+              <StyledListItem key={i}>
+                <a href={`#${section.replace(" ", "-").toLowerCase()}`}>
+                  {section}
+                </a>
+              </StyledListItem>
+            ))}
+          </StyledUL>
+        </StyledNav>
         <NavIconContainer tabIndex={1} onClick={onToggleNav}>
           <NavigationIcon />
         </NavIconContainer>
@@ -71,8 +89,30 @@ const StyledH1 = styled(H1)`
   margin-top: 4px;
 `
 
+const StyledNav = styled.nav(
+  mq({
+    display: ["none", ...mqFill(2), "block"],
+  })
+)
+
+const StyledUL = styled.ul`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 0;
+  list-style: none;
+`
+
+const StyledListItem = styled.li`
+  margin-bottom: 0;
+  margin-left: 1.5rem;
+  font-size: 2rem;
+  font-weight: bold;
+`
+
 const NavIconContainer = styled.div(props =>
-  css({
+  mq({
+    display: ["block", ...mqFill(2), "none"],
     height: "3rem",
     width: "3rem",
     cursor: "pointer",
