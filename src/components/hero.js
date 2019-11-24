@@ -12,7 +12,14 @@ export const Hero = props => (
   <>
     <StyledContainer>
       <MainImage />
-      <StyledButton primary>Book Now</StyledButton>
+      <StyledButton
+        primary
+        onClick={() => {
+          document.location.href = "tel:19036309300"
+        }}
+      >
+        Book Now
+      </StyledButton>
     </StyledContainer>
     <Container>
       <SecondaryImage />

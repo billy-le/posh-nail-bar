@@ -67,7 +67,9 @@ export const ContactUs = props => {
 
             <FlexParent>
               <Text bold>Phone Number:</Text>
-              <Text sm>903.630.9300</Text>
+              <Text sm>
+                <StyledLink href="tel:+19036309300">903.630.9300</StyledLink>
+              </Text>
             </FlexParent>
 
             <FlexParent>
@@ -176,6 +178,13 @@ const FlexParent = styled.div(
     justifyContent: ["space-between", ...mqFill(2), "initial"],
     textAlign: ["right", ...mqFill(2), "left"],
   })
+)
+
+const StyledLink = styled.a(
+  props => `
+  text-decoration: none;
+  color: ${props.theme.colors.blue10}
+`
 )
 
 const Map = () => {
