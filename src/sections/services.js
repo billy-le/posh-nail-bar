@@ -15,7 +15,7 @@ export const Services = () => {
 
   function setBgDimensions() {
     if (imageRef.current) {
-      const target = imageRef.current.imageRef.current.getBoundingClientRect()
+      const target = imageRef.current.getBoundingClientRect()
       const backgrounds = document.querySelectorAll(".service-items")
       for (const bg of backgrounds) {
         bg.style.height = `${target.height}px`
