@@ -14,8 +14,8 @@ export const Services = () => {
   const imageRef = useRef()
 
   function setBgDimensions() {
-    if (imageRef.current) {
-      const target = imageRef.current.getBoundingClientRect()
+    if (imageRef.current && imageRef.current.imageRef.current) {
+      const target = imageRef.current.imageRef.current.getBoundingClientRect()
       const backgrounds = document.querySelectorAll(".service-items")
       for (const bg of backgrounds) {
         bg.style.height = `${target.height}px`
@@ -60,7 +60,7 @@ export const Services = () => {
 
         <FlexContainer reverse>
           <Wrapper>
-            <ImgSet pedicure ref={imageRef} />
+            <ImgSet pedicure />
           </Wrapper>
           <Content>
             <StyledH3
@@ -107,7 +107,7 @@ export const Services = () => {
             </Ul>
           </Content>
           <Wrapper>
-            <ImgSet threading ref={imageRef} />
+            <ImgSet threading />
           </Wrapper>
         </FlexContainer>
       </FlexParent>
